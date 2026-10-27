@@ -1,0 +1,27 @@
+{
+  "_note": "Prerequisites are from the University of Pretoria 2026 yearbook (EBIT faculty). status: distinction (mark shown), passed (no mark shown), in-progress. Edit, then run: python3 scripts/make_graph.py",
+  "source": "University of Pretoria 2026 yearbook",
+  "layers": ["FOUNDATIONS", "CORE", "BRANCHES", "SPECIALISATION", "CAPSTONE"],
+  "modules": [
+    {"code": "COS151", "name": "Intro to computer science", "full": "Introduction to computer science", "year": 2024, "status": "passed", "prereqs": []},
+    {"code": "COS132", "name": "Imperative programming", "full": "Imperative programming", "year": 2024, "status": "distinction", "mark": 76, "prereqs": []},
+    {"code": "WTW146", "name": "Linear algebra", "full": "Linear algebra", "year": 2024, "status": "passed", "prereqs": []},
+    {"code": "COS110", "name": "Program design", "full": "Program design: Introduction", "year": 2024, "status": "passed", "prereqs": ["COS132", "COS151"]},
+    {"code": "COS122", "name": "Operating systems", "full": "Operating systems", "year": 2024, "status": "passed", "prereqs": ["COS132"]},
+    {"code": "COS221", "y": 178, "name": "Databases", "full": "Introduction to database systems", "year": 2025, "status": "distinction", "mark": 75, "prereqs": ["COS110"]},
+    {"code": "COS216", "y": 244, "name": "Netcentric systems", "full": "Netcentric computer systems", "year": 2025, "status": "distinction", "mark": 84, "prereqs": ["COS110"]},
+    {"code": "COS210", "y": 310, "name": "Theory of computer science", "full": "Theoretical computer science", "year": 2025, "status": "distinction", "mark": 87, "prereqs": ["COS110", "COS151"]},
+    {"code": "COS212", "y": 376, "name": "Data structures", "full": "Data structures and algorithms", "year": 2025, "status": "distinction", "mark": 84, "prereqs": ["COS110"]},
+    {"code": "COS314", "y": 442, "name": "Artificial intelligence", "full": "Artificial intelligence", "year": 2026, "status": "distinction", "mark": 75, "prereqs": ["COS110"]},
+    {"code": "COS330", "y": 552, "name": "Security & ethics", "full": "Computer security and ethics", "year": 2026, "status": "in-progress", "prereqs": ["COS110"]},
+    {"code": "COS333", "y": 618, "name": "Programming languages", "full": "Programming languages", "year": 2026, "status": "distinction", "mark": 76, "prereqs": ["COS110"]},
+    {"code": "COS344", "y": 684, "name": "Computer graphics", "full": "Computer graphics", "year": 2026, "status": "distinction", "mark": 90, "prereqs": ["COS110", "WTW146"]},
+    {"code": "COS326", "y": 120, "name": "Database systems", "full": "Database systems", "year": 2026, "status": "in-progress", "prereqs": ["COS221"]},
+    {"code": "COS332", "y": 186, "name": "Computer networks", "full": "Computer networks", "year": 2026, "status": "passed", "prereqs": ["COS216"]},
+    {"code": "COS341", "y": 440, "name": "Compiler construction", "full": "Compiler construction", "year": 2026, "status": "in-progress", "prereqs": ["COS210", "COS212"]},
+    {"code": "COS214", "y": 252, "name": "Software modelling", "full": "Software modelling", "year": 2025, "status": "passed", "prereqs": ["COS212"]},
+    {"code": "COS284", "y": 306, "name": "Computer architecture", "full": "Computer organisation and architecture", "year": 2025, "status": "distinction", "mark": 85, "prereqs": ["COS212"]},
+    {"code": "COS226", "y": 497, "name": "Concurrent systems", "full": "Concurrent systems", "year": 2025, "status": "distinction", "mark": 76, "prereqs": ["COS122", "COS212"]},
+    {"code": "COS301", "y": 376, "name": "Software engineering", "full": "Software engineering", "year": 2026, "status": "in-progress", "prereqs": ["COS212", "COS214"]}
+  ]
+}

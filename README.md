@@ -12,6 +12,7 @@ I like leading teams and I like explaining things, which is why I'm also a teach
 - **Cordwalles IT**: building Transit360, a real-time school bus tracking system, with the Head of IT at Cordwalles Preparatory School for Boys
 - **Final-year capstone**: OptiLifts, an AI-driven workout platform with an industry client
 - **Team lead** on university projects, including a team of 50
+- **14 distinctions** so far, with a top mark of 90% in Computer Graphics
 - Open to graduate and junior developer opportunities
 
 <p align="center"><img src="assets/divider.svg" width="100%" alt=""></p>
@@ -25,6 +26,46 @@ I like leading teams and I like explaining things, which is why I'm also a teach
 | **[Templanter](https://github.com/AlessandroParavano/TemplanterProject)** | A plant nursery business simulator that applies 11 design patterns (Singleton, Factory, Observer, State, Memento and more) in a real, playable program. | C++, raylib |
 | **Transit360** *(private)* | Real-time school bus tracking with live maps, attendance, pickup and drop-off management, parent notifications and an admin dashboard. Built for Cordwalles Preparatory School. | Node.js, PostgreSQL, Socket.IO, React, React Native (Expo) |
 | **SPL compiler** *(private)* | A lexer and parser for a course language, written in plain Java 21 with no libraries. It pinpoints a syntax error, what it expected and how to fix it, or writes out the full syntax tree. | Java |
+
+<p align="center"><img src="assets/divider.svg" width="100%" alt=""></p>
+
+## Academics
+
+<p align="center">
+  <img src="assets/academics.svg" width="100%" alt="Academic highlights: 14 distinctions, 90% in Computer Graphics, 87% in Theoretical Computer Science, 85% in Computer Organisation and Architecture, 84% in Data Structures and Netcentric Computer Systems">
+</p>
+
+My strongest results are in systems, theory and graphics: **90% in Computer Graphics**, 87% in Theoretical Computer Science, 85% in Computer Organisation & Architecture, and 84% in both Data Structures & Algorithms and Netcentric Computer Systems, the two modules I now tutor. My yearly average has gone from 65 to 78, with 14 distinctions so far.
+
+### My degree, as a graph
+
+<p align="center">
+  <img src="assets/prerequisites.svg" width="100%" alt="Prerequisite graph of 20 Computer Science modules at the University of Pretoria. COS 110 feeds eight modules and COS 212 feeds five. Distinctions are outlined in gold, modules in progress are dashed.">
+</p>
+
+Every module is a node and every prerequisite is an edge. Gold nodes are distinctions (with the mark), dashed nodes are in progress. There is an [interactive version](graph.html): click or hover a module to light up everything it needed and everything it unlocks. The whole graph is also available as a [Neo4j import script](data/modules.cypher).
+
+> I modelled my degree in Neo4j to find out which module is the most connected. COS 110 has eight `PREREQUISITE_OF` relationships, which is eight more than I can say for my last few.
+
+```cypher
+MATCH path = (:Module {code: "COS110"})-[:PREREQUISITE_OF*]->(:Module {code: "COS301"})
+RETURN path;
+```
+
+<sub>Prerequisites are from the University of Pretoria 2026 yearbook. Alternative routes and programme-admission conditions are left out, and marks are shown only for distinctions.</sub>
+
+### Where the modules show up in my work
+
+| Module | In practice |
+| :-- | :-- |
+| **Computer Graphics** (COS 344), 90% | OpenGL graphics assignments in C++ |
+| **Data Structures & Algorithms** (COS 212), 84% | Teaching assistant for this module, running the Java practicals |
+| **Netcentric Computer Systems** (COS 216), 84% | Teaching assistant: helping students build a full-stack website, and marking |
+| **Artificial Intelligence** (COS 314), 75% | Genetic programming in Java: decision-tree and arithmetic evolved programs |
+| **Software Modelling** (COS 214) | [Templanter](https://github.com/AlessandroParavano/TemplanterProject), a C++ simulator using 11 design patterns |
+| **Software Engineering** (COS 301), in progress | [OptiLifts](https://github.com/COS301-SE-2026/OptiLifts) with an industry client |
+| **Compiler Construction** (COS 341), in progress | A lexer and parser for a course language, in plain Java 21 |
+| **Computer Security & Ethics** (COS 330), in progress | Honeypot labs: a fake FTP server in Python that logs what attackers try |
 
 <p align="center"><img src="assets/divider.svg" width="100%" alt=""></p>
 
