@@ -12,10 +12,10 @@ d = json.loads((ROOT / "data" / "academics.json").read_text(encoding="utf-8"))
 rows = sorted(d["highlights"], key=lambda r: (-r["mark"], r["code"]))
 top = rows[0]["mark"]
 
-W = 1000
-X_CODE, X_NAME, TRACK_X, TRACK_W = 48, 118, 400, 250
-Y0, PITCH = 150, 28
-H = Y0 + (len(rows) - 1) * PITCH + 88
+W, PAD = 600, 36
+TRACK_X, TRACK_W = PAD, 440
+Y0, PITCH = 330, 46
+H = Y0 + (len(rows) - 1) * PITCH + 76
 dist_x = TRACK_X + TRACK_W * d["distinction_from"] / 100
 
 bars, labels, grid = [], [], []
@@ -24,25 +24,24 @@ for i, r in enumerate(rows):
     w = TRACK_W * r["mark"] / 100
     best = r["mark"] == top
     delay = 0.25 + i * 0.09
-    grid.append(f'<rect x="{TRACK_X}" y="{y-9}" width="{TRACK_W}" height="10" rx="5" fill="#8aa4ff" fill-opacity=".08"/>')
-    bars.append(f'<rect class="bar" style="animation-delay:{delay:.2f}s" x="{TRACK_X}" y="{y-9}" width="{w:.1f}" height="10" rx="5" fill="url(#{"gold" if best else "acc"})"{" filter=\"url(#glowf)\"" if best else ""}/>')
+    grid.append(f'<rect x="{TRACK_X}" y="{y+9}" width="{TRACK_W}" height="10" rx="5" fill="#8aa4ff" fill-opacity=".08"/>')
+    bars.append(f'<rect class="bar" style="animation-delay:{delay:.2f}s" x="{TRACK_X}" y="{y+9}" width="{w:.1f}" height="10" rx="5" fill="url(#{"gold" if best else "acc"})"{" filter=\"url(#glowf)\"" if best else ""}/>')
     labels.append(f'<g class="fade" style="animation-delay:{delay:.2f}s">'
-                  f'<text class="mono" x="{X_CODE}" y="{y}" font-size="13" font-weight="700" fill="{"#fbbf24" if best else "#7dd3fc"}">{escape(r["code"])}</text>'
-                  f'<text class="sans" x="{X_NAME}" y="{y}" font-size="13" fill="#e5e7ff">{escape(r["name"])}</text>'
-                  f'<text class="sans" x="{TRACK_X + w + 10:.1f}" y="{y+1}" font-size="14" font-weight="800" fill="{"#fde68a" if best else "#ffffff"}">{r["mark"]}</text>'
+                  f'<text class="mono" x="{PAD}" y="{y}" font-size="14" font-weight="700" fill="{"#fbbf24" if best else "#7dd3fc"}">{escape(r["code"])}</text>'
+                  f'<text class="sans" x="{PAD+68}" y="{y}" font-size="14.5" fill="#e5e7ff">{escape(r["name"])}</text>'
+                  f'<text class="sans" x="{TRACK_X + w + 10:.1f}" y="{y+19}" font-size="15" font-weight="800" fill="{"#fde68a" if best else "#ffffff"}">{r["mark"]}</text>'
                   + '</g>')
 
-# yearly weighted averages as small columns
+# yearly weighted averages as small columns (third stat)
 yrs = d["years"]
-cx0, base_y, col_h = 716, 410, 96
+base_y, col_h = 196, 64
 cols = []
 for i, y in enumerate(yrs):
     h = col_h * y["average"] / 100
-    x = cx0 + i * 82
-    cols.append(f'<rect class="col" style="animation-delay:{0.6+i*0.15:.2f}s" x="{x}" y="{base_y-h:.1f}" width="46" height="{h:.1f}" rx="6" fill="url(#acc)" fill-opacity="{".55" if y.get("partial") else ".95"}"/>'
-                f'<text class="sans fade" style="animation-delay:{0.9+i*0.15:.2f}s" x="{x+23}" y="{base_y-h-8:.1f}" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">{y["average"]:.0f}</text>'
-                f'<text class="mono" x="{x+23}" y="{base_y+17}" text-anchor="middle" font-size="12" fill="#8b9bd8">{y["year"]}{"*" if y.get("partial") else ""}</text>')
-gain = round(yrs[1]["average"] - yrs[0]["average"])
+    x = 372 + i * 64
+    cols.append(f'<rect class="col" style="animation-delay:{0.6+i*0.15:.2f}s" x="{x}" y="{base_y-h:.1f}" width="44" height="{h:.1f}" rx="6" fill="url(#acc)" fill-opacity="{".55" if y.get("partial") else ".95"}"/>'
+                f'<text class="sans fade" style="animation-delay:{0.9+i*0.15:.2f}s" x="{x+22}" y="{base_y-h-8:.1f}" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">{y["average"]:.0f}</text>'
+                f'<text class="mono" x="{x+22}" y="{base_y+17}" text-anchor="middle" font-size="12" fill="#8b9bd8">{y["year"]}{"*" if y.get("partial") else ""}</text>')
 
 svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Academic highlights: {d["distinctions"]} distinctions, top mark {top} percent in {escape(rows[0]["name"])}, cumulative average {d["cumulative_average"]:.1f} percent">
 <defs>
@@ -68,30 +67,31 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{
 </style>
 <g clip-path="url(#frame)">
   <rect width="{W}" height="{H}" fill="url(#bg)"/>
-  <ellipse cx="840" cy="{H/2:.0f}" rx="300" ry="260" fill="url(#glow)"/>
+  <ellipse cx="{W*0.7:.0f}" cy="170" rx="300" ry="200" fill="url(#glow)"/>
   <rect width="{W}" height="{H}" fill="url(#scan)"/>
 
-  <text class="sans" x="{X_CODE}" y="54" font-size="12.5" font-weight="600" letter-spacing="3" fill="#8b9bd8">ACADEMIC HIGHLIGHTS</text>
-  <rect x="{X_CODE}" y="68" width="56" height="3" rx="1.5" fill="url(#acc)"/>
-  <text class="sans" x="{X_CODE}" y="98" font-size="20" font-weight="800" fill="url(#num)">{escape(d["programme"])}</text>
-  <text class="sans" x="{X_CODE}" y="118" font-size="12" fill="#8b9bd8">Selected modules, marks out of 100. A distinction is {d["distinction_from"]} and above.</text>
+  <text class="sans" x="{PAD}" y="48" font-size="13" font-weight="600" letter-spacing="3" fill="#8b9bd8">ACADEMIC HIGHLIGHTS</text>
+  <rect x="{PAD}" y="62" width="56" height="3" rx="1.5" fill="url(#acc)"/>
+  <text class="sans" x="{PAD}" y="94" font-size="19" font-weight="800" fill="url(#num)">{escape(d["programme"])}</text>
 
+  <g class="fade" style="animation-delay:.4s">
+    <text class="sans" x="{PAD}" y="196" font-size="64" font-weight="800" fill="url(#num)">{d["distinctions"]}</text>
+    <text class="sans" x="{PAD}" y="246" font-size="12" font-weight="700" letter-spacing="2" fill="#8b9bd8">DISTINCTIONS</text>
+    <text class="sans" x="196" y="196" font-size="40" font-weight="800" fill="url(#num)">{d["cumulative_average"]:.1f}%</text>
+    <text class="sans" x="196" y="246" font-size="12" font-weight="700" letter-spacing="2" fill="#8b9bd8">CUMULATIVE AVG</text>
+    <text class="sans" x="372" y="246" font-size="12" font-weight="700" letter-spacing="2" fill="#8b9bd8">YEARLY AVERAGE</text>
+  </g>
+  {"".join(cols)}
+  <line x1="{PAD}" y1="270" x2="{W-PAD}" y2="270" stroke="#8b7cf6" stroke-opacity=".25"/>
+
+  <text class="sans" x="{PAD}" y="298" font-size="13" fill="#8b9bd8">Selected modules, marks out of 100</text>
   <g>{"".join(grid)}</g>
-  <line x1="{dist_x:.1f}" y1="{Y0-22}" x2="{dist_x:.1f}" y2="{Y0+(len(rows)-1)*PITCH+10}" stroke="#a78bfa" stroke-opacity=".6" stroke-dasharray="3 5"/>
-  <text class="sans" x="{dist_x:.1f}" y="{Y0-27}" text-anchor="middle" font-size="10" font-weight="700" letter-spacing="1.5" fill="#a78bfa">DISTINCTION</text>
+  <line x1="{dist_x:.1f}" y1="{Y0-16}" x2="{dist_x:.1f}" y2="{Y0+(len(rows)-1)*PITCH+24}" stroke="#a78bfa" stroke-opacity=".6" stroke-dasharray="3 5"/>
+  <text class="sans" x="{dist_x:.1f}" y="{Y0-26}" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing="1.5" fill="#a78bfa">DISTINCTION {d["distinction_from"]}+</text>
   <g>{"".join(bars)}</g>
   {"".join(labels)}
 
-  <line x1="690" y1="48" x2="690" y2="{H-48}" stroke="#8b7cf6" stroke-opacity=".25"/>
-  <g class="fade" style="animation-delay:.5s">
-    <text class="sans" x="716" y="108" font-size="64" font-weight="800" fill="url(#num)">{d["distinctions"]}</text>
-    <text class="sans" x="716" y="132" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#8b9bd8">DISTINCTIONS</text>
-    <text class="sans" x="716" y="196" font-size="40" font-weight="800" fill="url(#num)">{d["cumulative_average"]:.1f}%</text>
-    <text class="sans" x="716" y="218" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#8b9bd8">CUMULATIVE AVERAGE</text>
-    <text class="sans" x="716" y="262" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#8b9bd8">YEARLY AVERAGE</text>
-  </g>
-  {"".join(cols)}
-  <text class="sans" x="{X_CODE}" y="{H-24}" font-size="11" fill="#6f7bb0">As at {d["updated"]}.  * 2026 so far (final year in progress).</text>
+  <text class="sans" x="{PAD}" y="{H-22}" font-size="11.5" fill="#6f7bb0">As at {d["updated"]}.  * 2026 so far (final year in progress).</text>
 </g>
 <rect x=".5" y=".5" width="{W-1}" height="{H-1}" rx="18" fill="none" stroke="#8b7cf6" stroke-opacity=".28"/>
 </svg>

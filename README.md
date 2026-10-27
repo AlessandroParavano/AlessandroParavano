@@ -45,13 +45,13 @@ My strongest results are in systems, theory and graphics: **90% in Computer Grap
 
 The whole graph is also available as a [Neo4j import script](data/modules.cypher).
 
-> I put my degree in a graph database. Finally, a place where every relationship has a clear prerequisite and nobody asks "where is this going?"
+> Let's start establishing our relationship like Neo4j does.
 
 ```cypher
-MATCH path = (:Module {code: "COS110"})-[:PREREQUISITE_OF*]->(:Module {code: "COS301"})
-RETURN path;
+MATCH (me:Developer {name: "Alessandro"}), (you:Team {hiring: true})
+MERGE (me)-[:WORKS_WITH {since: "day one"}]->(you)
+RETURN me, you;
 ```
-
 
 ### Where the modules show up in my work
 
