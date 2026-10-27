@@ -43,7 +43,7 @@ My strongest results are in systems, theory and graphics: **90% in Computer Grap
   <img src="assets/prerequisites.svg" width="100%" alt="Prerequisite graph of 20 Computer Science modules at the University of Pretoria. COS 110 feeds eight modules and COS 212 feeds five. Distinctions are outlined in gold, modules in progress are dashed.">
 </p>
 
-Every module is a node and every prerequisite is an edge. Gold nodes are distinctions (with the mark), dashed nodes are in progress. There is an [interactive version](graph.html): click or hover a module to light up everything it needed and everything it unlocks. The whole graph is also available as a [Neo4j import script](data/modules.cypher).
+The whole graph is also available as a [Neo4j import script](data/modules.cypher).
 
 > I put my degree in a graph database. Finally, a place where every relationship has a clear prerequisite and nobody asks "where is this going?"
 
@@ -52,7 +52,6 @@ MATCH path = (:Module {code: "COS110"})-[:PREREQUISITE_OF*]->(:Module {code: "CO
 RETURN path;
 ```
 
-<sub>Prerequisites are from the University of Pretoria 2026 yearbook. Alternative routes and programme-admission conditions are left out, and marks are shown only for distinctions.</sub>
 
 ### Where the modules show up in my work
 

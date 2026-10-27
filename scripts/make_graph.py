@@ -5,7 +5,6 @@
 
 Writes:
   assets/prerequisites.svg   animated picture for the README
-  graph.html                 the same graph, interactive (hover a module to light up its prerequisites and what it unlocks)
   data/modules.cypher        the same graph as a Neo4j script
 """
 import json
@@ -242,7 +241,6 @@ def build_cypher():
 if __name__ == "__main__":
     bad = crossings()
     (ROOT / "assets" / "prerequisites.svg").write_text(build_svg(), encoding="utf-8")
-    (ROOT / "graph.html").write_text(build_html(), encoding="utf-8")
     (ROOT / "data" / "modules.cypher").write_text(build_cypher(), encoding="utf-8")
     print(f"{len(mods)} modules, {sum(len(m['prereqs']) for m in mods.values())} edges, {NL} layers, canvas {W}x{H}")
     print("edges running through an unrelated node:", bad or "none")
