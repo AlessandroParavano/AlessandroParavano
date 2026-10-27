@@ -32,7 +32,7 @@ I like leading teams and I like explaining things, which is why I'm also a teach
 ## Academics
 
 <p align="center">
-  <img src="assets/academics.svg" width="100%" alt="Academic highlights: 14 distinctions, 90% in Computer Graphics, 87% in Theoretical Computer Science, 85% in Computer Organisation and Architecture, 84% in Data Structures and Netcentric Computer Systems">
+  <img src="assets/academics.svg?v=2" width="100%" alt="Academic highlights: 14 distinctions, 90% in Computer Graphics, 87% in Theoretical Computer Science, 85% in Computer Organisation and Architecture, 84% in Data Structures and Netcentric Computer Systems">
 </p>
 
 My strongest results are in systems, theory and graphics: **90% in Computer Graphics**, 87% in Theoretical Computer Science, 85% in Computer Organisation & Architecture, and 84% in both Data Structures & Algorithms and Netcentric Computer Systems, the two modules I now tutor. My yearly average has gone from 65 to 78, with 14 distinctions so far.
