@@ -67,7 +67,6 @@ for i in range(NL):                                                       # ...o
     if todo:
         y.update(settle(todo, {c: mean(y[p] for p in mods[c]["prereqs"] if p in y) for c in todo}))
 
-y = {c: v + 30 for c, v in y.items()}                                       # leave room for the column titles
 H = int(max(y.values()) + NH + 150)
 node = {c: (X[depth[c]], y[c]) for c in mods}
 
@@ -126,10 +125,6 @@ def node_svg(c, delay):
     return "".join(out)
 
 def build_svg(interactive=False):
-    bands = "".join(
-        f'<rect x="{X[i]-14:.1f}" y="92" width="{NW+28}" height="{H-92-86}" rx="14" fill="#8aa4ff" fill-opacity=".045"/>'
-        f'<text style="{SANS}" x="{X[i]+NW/2:.1f}" y="118" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing="2.4" fill="#8b9bd8">{D["layers"][i]}</text>'
-        for i in range(NL))
     edges = "".join(edge_svg(a, b) for b, m in mods.items() for a in m["prereqs"])
     nodes = "".join(node_svg(c, 0.1 + depth[c] * 0.18 + (i % 4) * 0.03) for i, c in enumerate(sorted(mods, key=lambda c: (depth[c], y[c]))))
     ly = H - 52
@@ -140,7 +135,7 @@ def build_svg(interactive=False):
               f'<text style="{SANS}" x="336" y="14" font-size="11" fill="#c7cdf0">Passed</text>'
               f'<rect x="410" y="0" width="34" height="20" rx="6" fill="#0e1138" stroke="#a78bfa" stroke-width="1.4" stroke-dasharray="4 3"/>'
               f'<text style="{SANS}" x="456" y="14" font-size="11" fill="#c7cdf0">In progress</text>'
-              f'<text style="{SANS}" x="{W-80}" y="14" text-anchor="end" font-size="11" fill="#8b9bd8">An arrow means: needed before</text></g>'
+              f'<text style="{SANS}" x="{W-80}" y="14" text-anchor="end" font-size="11" fill="#8b9bd8">Read left to right: an arrow means needed before</text></g>'
               f'<text style="{SANS}" x="40" y="{H-14}" font-size="10" fill="#6f7bb0">Prerequisites from the {escape(D["source"])}. Alternative routes and programme-admission conditions are left out.</text>')
     extra = ('.node{cursor:pointer}.dim{opacity:.16!important;transition:opacity .15s}.up .node-box{}'
              '.edge.on,.flow.on{stroke-opacity:1!important}.edge.on{stroke:#fbbf24!important}.hl-up rect:first-of-type{stroke:#38bdf8!important;stroke-width:2.2!important}'
@@ -173,7 +168,6 @@ def build_svg(interactive=False):
   <text style="{SANS}" x="40" y="46" font-size="12.5" font-weight="700" letter-spacing="3" fill="#8b9bd8">PREREQUISITE GRAPH</text>
   <rect x="40" y="60" width="56" height="3" rx="1.5" fill="url(#edge)"/>
   <text style="{SANS}" x="40" y="84" font-size="19" font-weight="800" fill="url(#nm)">BSc Computer Science, University of Pretoria: {len(mods)} modules, {sum(len(m["prereqs"]) for m in mods.values())} prerequisites</text>
-  {bands}
   <g>{edges}</g>
   <g>{nodes}</g>
   {legend}

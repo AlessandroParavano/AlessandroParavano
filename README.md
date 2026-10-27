@@ -45,7 +45,7 @@ My strongest results are in systems, theory and graphics: **90% in Computer Grap
 
 Every module is a node and every prerequisite is an edge. Gold nodes are distinctions (with the mark), dashed nodes are in progress. There is an [interactive version](graph.html): click or hover a module to light up everything it needed and everything it unlocks. The whole graph is also available as a [Neo4j import script](data/modules.cypher).
 
-> I modelled my degree in Neo4j to find out which module is the most connected. COS 110 has eight `PREREQUISITE_OF` relationships, which is eight more than I can say for my last few.
+> I put my degree in a graph database. Finally, a place where every relationship has a clear prerequisite and nobody asks "where is this going?"
 
 ```cypher
 MATCH path = (:Module {code: "COS110"})-[:PREREQUISITE_OF*]->(:Module {code: "COS301"})

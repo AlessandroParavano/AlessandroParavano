@@ -30,7 +30,7 @@ for i, r in enumerate(rows):
                   f'<text class="mono" x="{X_CODE}" y="{y}" font-size="13" font-weight="700" fill="{"#fbbf24" if best else "#7dd3fc"}">{escape(r["code"])}</text>'
                   f'<text class="sans" x="{X_NAME}" y="{y}" font-size="13" fill="#e5e7ff">{escape(r["name"])}</text>'
                   f'<text class="sans" x="{TRACK_X + w + 10:.1f}" y="{y+1}" font-size="14" font-weight="800" fill="{"#fde68a" if best else "#ffffff"}">{r["mark"]}</text>'
-                  + (f'<text class="sans" x="{TRACK_X + w + 36:.1f}" y="{y}" font-size="10.5" font-weight="700" letter-spacing="1.5" fill="#fbbf24">HIGHEST MARK</text>' if best else "") + '</g>')
+                  + '</g>')
 
 # yearly weighted averages as small columns
 yrs = d["years"]
@@ -89,7 +89,6 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{
     <text class="sans" x="716" y="196" font-size="40" font-weight="800" fill="url(#num)">{d["cumulative_average"]:.1f}%</text>
     <text class="sans" x="716" y="218" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#8b9bd8">CUMULATIVE AVERAGE</text>
     <text class="sans" x="716" y="262" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#8b9bd8">YEARLY AVERAGE</text>
-    <text class="sans" x="868" y="262" font-size="12.5" font-weight="800" fill="#5fd0b8">+{gain} points</text>
   </g>
   {"".join(cols)}
   <text class="sans" x="{X_CODE}" y="{H-24}" font-size="11" fill="#6f7bb0">As at {d["updated"]}.  * 2026 so far (final year in progress).</text>
