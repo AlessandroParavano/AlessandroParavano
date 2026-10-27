@@ -1,0 +1,26 @@
+{
+  "_note": "Edit this file, then run: python3 scripts/make_academics.py  (it redraws assets/academics.svg). Only list results you want to show.",
+  "updated": "2026-10-27",
+  "programme": "BSc Computer Science, University of Pretoria",
+  "distinction_from": 75,
+  "distinctions": 14,
+  "cumulative_average": 72.24,
+  "years": [
+    { "year": 2024, "average": 65.33 },
+    { "year": 2025, "average": 78.30 },
+    { "year": 2026, "average": 78.00, "partial": true }
+  ],
+  "highlights": [
+    { "code": "COS344", "name": "Computer Graphics",                  "mark": 90, "year": 2026 },
+    { "code": "COS210", "name": "Theoretical Computer Science",       "mark": 87, "year": 2025 },
+    { "code": "COS284", "name": "Computer Organisation & Architecture","mark": 85, "year": 2025 },
+    { "code": "COS212", "name": "Data Structures & Algorithms",       "mark": 84, "year": 2025 },
+    { "code": "COS216", "name": "Netcentric Computer Systems",        "mark": 84, "year": 2025 },
+    { "code": "JCP202", "name": "Community-based Project",            "mark": 83, "year": 2025 },
+    { "code": "COS132", "name": "Imperative Programming",             "mark": 76, "year": 2024 },
+    { "code": "COS226", "name": "Concurrent Systems",                 "mark": 76, "year": 2025 },
+    { "code": "COS333", "name": "Programming Languages",              "mark": 76, "year": 2026 },
+    { "code": "COS314", "name": "Artificial Intelligence",            "mark": 75, "year": 2026 },
+    { "code": "COS221", "name": "Introduction to Database Systems",   "mark": 75, "year": 2025 }
+  ]
+}
